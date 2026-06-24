@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>新NISA まるわかり：1,800万の器と成長1,200万の蓋</title>
+<style>
+  :root{
+    --tsumitate:#0d9488;      /* 積立=安定（ティール） */
+    --tsumitate-soft:#ccfbf1;
+    --seicho:#f97316;         /* 成長=積極（オレンジ） */
+    --seicho-soft:#fed7aa;
+    --ink:#1e293b;
+    --sub:#64748b;
+    --line:#e2e8f0;
+    --bg:#f1f5f9;
+    --card:#ffffff;
+    --cap:#dc2626;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+    background:var(--bg);color:var(--ink);
+    line-height:1.75;padding:24px 16px 72px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:880px;margin:0 auto}
+
+  /* ===== ヘッダー ===== */
+  header{text-align:center;margin-bottom:14px}
+  .kicker{display:inline-block;font-size:13px;font-weight:700;color:var(--seicho);
+    background:var(--seicho-soft);padding:4px 14px;border-radius:999px;margin-bottom:14px}
+  h1{font-size:27px;font-weight:800;line-height:1.42}
+  h1 .hl{color:var(--tsumitate)}
+  h1 .hl2{color:var(--seicho)}
+  .lead{margin-top:14px;font-size:15px;color:var(--sub);max-width:640px;margin-inline:auto}
+
+  /* ===== セクション共通 ===== */
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;
+    padding:26px 24px;margin-top:22px;box-shadow:0 6px 24px -18px rgba(15,23,42,.3)}
+  .card-title{font-size:18px;font-weight:800;margin-bottom:6px;display:flex;align-items:center;gap:9px}
+  .card-note{font-size:13.5px;color:var(--sub);margin-bottom:18px}
+  .num{flex:none;display:inline-flex;width:26px;height:26px;border-radius:50%;background:var(--ink);
+    color:#fff;font-size:13px;font-weight:800;align-items:center;justify-content:center}
+
+  /* やさしい一言 */
+  .plain{font-size:15.5px;font-weight:700;line-height:1.7;background:#f0fdfa;
+    border-left:4px solid var(--tsumitate);border-radius:0 10px 10px 0;padding:12px 16px;margin-bottom:14px}
+  .plain .em{color:var(--seicho)}
+  /* くわしく枠 */
+  .detail{border:1px dashed var(--line);border-radius:12px;padding:14px 16px;background:#fbfdff}
+  .detail .dtag{display:inline-block;font-size:11px;font-weight:800;color:#fff;background:var(--sub);
+    padding:2px 10px;border-radius:999px;margin-bottom:8px;letter-spacing:.04em}
+  .detail p{font-size:13.5px;color:#334155;margin-bottom:7px}
+  .detail p:last-child{margin-bottom:0}
+  .detail b{color:var(--ink)}
+  .detail .mini{font-size:12px;color:var(--sub)}
+
+  /* ===== メインの帯 ===== */
+  .barbox{position:relative;margin:10px 0 6px}
+  .bar{position:relative;height:90px;border-radius:14px;overflow:hidden;
+    background:#f1f5f9;border:1px solid var(--line);display:flex}
+  .seg{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    color:#fff;transition:width .12s ease;overflow:hidden;white-space:nowrap}
+  .seg .lab{font-size:13px;font-weight:700;opacity:.95}
+  .seg .amt{font-size:21px;font-weight:800}
+  #segT{background:var(--tsumitate)}
+  #segS{background:var(--seicho)}
+  .seg.thin .lab,.seg.thin .amt{display:none}
+  .cap{position:absolute;top:-10px;bottom:-10px;left:33.333%;width:0;
+    border-left:3px dashed var(--cap);z-index:5;pointer-events:none}
+  .cap-tag{position:absolute;top:-34px;left:33.333%;transform:translateX(-50%);
+    background:var(--cap);color:#fff;font-size:11px;font-weight:700;
+    padding:3px 9px;border-radius:7px;white-space:nowrap;z-index:6}
+  .cap-tag::after{content:"";position:absolute;left:50%;bottom:-5px;transform:translateX(-50%);
+    border:5px solid transparent;border-top-color:var(--cap);border-bottom:0}
+  .cap-sub{position:absolute;left:calc(33.333% + 8px);bottom:-26px;font-size:11px;color:var(--cap);font-weight:700}
+  .scale{display:flex;justify-content:space-between;margin-top:32px;font-size:12px;color:var(--sub)}
+
+  .slider-row{margin-top:24px;background:#fff7ed;border:1px solid var(--seicho-soft);
+    border-radius:14px;padding:16px 18px}
+  .slider-row label{display:block;font-size:13px;font-weight:700;color:#9a3412;margin-bottom:10px}
+  .slider-row label b{font-size:18px;color:var(--seicho)}
+  input[type=range]{-webkit-appearance:none;width:100%;height:8px;border-radius:999px;
+    background:linear-gradient(90deg,var(--seicho-soft),var(--seicho));outline:none}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;
+    border-radius:50%;background:#fff;border:4px solid var(--seicho);cursor:pointer;
+    box-shadow:0 2px 6px rgba(0,0,0,.2)}
+  input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:#fff;
+    border:4px solid var(--seicho);cursor:pointer}
+  .hint{margin-top:10px;font-size:12px;color:var(--sub)}
+  .hint b{color:var(--cap)}
+
+  /* ===== 代表3パターン ===== */
+  .patterns{display:grid;gap:16px}
+  .pat{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center}
+  .pat .ptitle{font-size:13px;font-weight:700;color:var(--sub);white-space:nowrap}
+  .minibar{position:relative;height:44px;border-radius:9px;overflow:hidden;display:flex;
+    background:#f1f5f9;border:1px solid var(--line)}
+  .minibar .mseg{height:100%;display:flex;align-items:center;justify-content:center;
+    color:#fff;font-size:12px;font-weight:700;white-space:nowrap}
+  .minibar .mt{background:var(--tsumitate)}
+  .minibar .ms{background:var(--seicho)}
+  .minibar .mcap{position:absolute;top:0;bottom:0;left:33.333%;border-left:2px dashed var(--cap);z-index:4}
+  .pat-foot{font-size:12px;color:var(--sub);margin-top:4px;text-align:center}
+
+  /* ===== 税金の比較 ===== */
+  .tax{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:stretch}
+  .taxcell{border-radius:14px;padding:18px 16px;text-align:center}
+  .taxcell.bad{background:#fef2f2;border:1px solid #fecaca}
+  .taxcell.good{background:#f0fdfa;border:1px solid var(--tsumitate-soft)}
+  .taxcell .th{font-size:12px;font-weight:700;color:var(--sub)}
+  .taxcell .tbig{font-size:26px;font-weight:800;margin:6px 0 2px}
+  .taxcell.bad .tbig{color:var(--cap)}
+  .taxcell.good .tbig{color:var(--tsumitate)}
+  .taxcell .ts{font-size:11.5px;color:var(--sub)}
+  .taxvs{display:flex;align-items:center;font-weight:800;color:var(--sub);font-size:13px}
+  .taxnote{font-size:12px;color:var(--sub);margin-top:12px;text-align:center}
+
+  /* ===== 買えるもの ===== */
+  .buy{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .buycol{border-radius:14px;padding:16px 18px}
+  .buycol.t{background:#f0fdfa;border:1px solid var(--tsumitate-soft)}
+  .buycol.s{background:#fff7ed;border:1px solid var(--seicho-soft)}
+  .buycol h4{font-size:14px;margin-bottom:8px}
+  .buycol.t h4{color:var(--tsumitate)}
+  .buycol.s h4{color:#9a3412}
+  .buycol ul{list-style:none;display:grid;gap:6px}
+  .buycol li{font-size:13px;padding-left:18px;position:relative;color:#334155}
+  .buycol li::before{content:"●";position:absolute;left:0;font-size:9px;top:5px}
+  .buycol.t li::before{color:var(--tsumitate)}
+  .buycol.s li::before{color:var(--seicho)}
+  .buycol .ng{font-size:11.5px;color:var(--sub);margin-top:8px}
+
+  /* ===== 年間上限 ===== */
+  .year{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .ycell{border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .ycell.t{background:#f0fdfa}
+  .ycell.s{background:#fff7ed}
+  .ycell .yl{font-size:12px;font-weight:700;color:var(--sub)}
+  .ycell .yv{font-size:22px;font-weight:800;margin-top:2px}
+  .ycell.t .yv{color:var(--tsumitate)}
+  .ycell.s .yv{color:var(--seicho)}
+  .ycell .ys{font-size:11px;color:var(--sub)}
+  .ytotal{grid-column:1/-1;text-align:center;background:var(--ink);color:#fff;
+    border-radius:12px;padding:12px;font-weight:700}
+  .ytotal b{font-size:20px}
+
+  /* ===== 始める前に ===== */
+  .facts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .fact{display:flex;gap:11px;align-items:flex-start;background:#fbfdff;border:1px solid var(--line);
+    border-radius:12px;padding:13px 15px}
+  .fact .ic{flex:none;width:30px;height:30px;border-radius:8px;background:var(--tsumitate-soft);
+    color:var(--tsumitate);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px}
+  .fact .ft{font-size:13px}
+  .fact .ft b{display:block;font-size:13.5px;margin-bottom:1px}
+  .warn{grid-column:1/-1;background:#fffbeb;border:1px solid #fde68a;border-radius:12px;
+    padding:13px 16px;font-size:13px;color:#92400e}
+  .warn b{font-weight:800}
+
+  /* ===== 旧制度との違い ===== */
+  .ctable{width:100%;border-collapse:collapse;font-size:13px;overflow:hidden;border-radius:12px}
+  .ctable th,.ctable td{padding:11px 13px;text-align:left;border-bottom:1px solid var(--line)}
+  .ctable thead th{background:#f8fafc;font-size:12px;color:var(--sub)}
+  .ctable thead th.newcol{background:var(--tsumitate);color:#fff}
+  .ctable td.lab{font-weight:700;color:var(--sub);white-space:nowrap}
+  .ctable td.newcol{background:#f0fdfa;font-weight:700;color:var(--ink)}
+  .ctable tr:last-child td{border-bottom:0}
+  .ctwrap{overflow-x:auto}
+
+  /* ===== 使い分け ===== */
+  .use{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .usecol{border-radius:14px;padding:16px 18px}
+  .usecol.t{background:#f0fdfa;border:1px solid var(--tsumitate-soft)}
+  .usecol.s{background:#fff7ed;border:1px solid var(--seicho-soft)}
+  .usecol h4{font-size:14px;margin-bottom:3px}
+  .usecol .role{font-size:11.5px;font-weight:700;letter-spacing:.04em;margin-bottom:9px}
+  .usecol.t h4,.usecol.t .role{color:var(--tsumitate)}
+  .usecol.s h4,.usecol.s .role{color:#9a3412}
+  .usecol ul{list-style:none;display:grid;gap:6px}
+  .usecol li{font-size:13px;padding-left:18px;position:relative;color:#334155}
+  .usecol li::before{content:"✓";position:absolute;left:0;font-weight:800}
+  .usecol.t li::before{color:var(--tsumitate)}
+  .usecol.s li::before{color:var(--seicho)}
+
+  /* ===== シミュレーター ===== */
+  .sim-controls{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:18px}
+  .sim-ctl{background:#f8fafc;border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+  .sim-ctl label{display:block;font-size:12px;font-weight:700;color:var(--sub);margin-bottom:6px}
+  .sim-ctl .cval{font-size:18px;font-weight:800;color:var(--ink)}
+  .sim-ctl input[type=range]{margin-top:8px;background:linear-gradient(90deg,#99f6e4,var(--tsumitate))}
+  .sim-ctl input[type=range]::-webkit-slider-thumb{border-color:var(--tsumitate)}
+  .sim-ctl input[type=range]::-moz-range-thumb{border-color:var(--tsumitate)}
+  .chartbox{position:relative;width:100%;background:#fbfdff;border:1px solid var(--line);border-radius:12px;padding:10px}
+  .chartbox svg{display:block;width:100%;height:auto}
+  .sim-result{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+  .rcell{border-radius:12px;padding:14px;text-align:center}
+  .rcell.pr{background:#f1f5f9}
+  .rcell.gn{background:#fff7ed;border:1px solid var(--seicho-soft)}
+  .rcell.tx{background:#f0fdfa;border:1px solid var(--tsumitate-soft)}
+  .rcell .rl{font-size:11.5px;font-weight:700;color:var(--sub)}
+  .rcell .rv{font-size:23px;font-weight:800;margin-top:3px}
+  .rcell.pr .rv{color:#475569}
+  .rcell.gn .rv{color:var(--seicho)}
+  .rcell.tx .rv{color:var(--tsumitate)}
+  .rcell .rs{font-size:10.5px;color:var(--sub);margin-top:2px}
+  .legend{display:flex;gap:16px;justify-content:center;margin-top:10px;font-size:12px;color:var(--sub)}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
+
+  .takeaway{margin-top:22px;background:linear-gradient(135deg,#0d9488,#0f766e);color:#fff;
+    border-radius:18px;padding:26px}
+  .takeaway h2{font-size:17px;margin-bottom:14px}
+  .takeaway ul{list-style:none;display:grid;gap:10px}
+  .takeaway li{font-size:14.5px;padding-left:24px;position:relative}
+  .takeaway li::before{content:"→";position:absolute;left:0;font-weight:800;color:var(--seicho-soft)}
+  .takeaway b{color:#fff}
+  .footer{text-align:center;font-size:11px;color:var(--sub);margin-top:28px;line-height:1.7}
+
+  @media(max-width:600px){
+    h1{font-size:21px}
+    .year,.buy,.facts{grid-template-columns:1fr}
+    .pat{grid-template-columns:1fr}
+    .pat .ptitle{margin-bottom:-4px}
+    .seg .amt{font-size:16px}
+    .tax{grid-template-columns:1fr;gap:8px}
+    .taxvs{justify-content:center}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <span class="kicker">新NISA まるわかり 1枚ガイド</span>
+    <h1>まず<span class="hl">1,800万円の器</span>がある。<br><span class="hl2">成長は最大1,200万</span>の「蓋」があるだけ。</h1>
+    <p class="lead">「積立600万＋成長1,200万で固定」ではありません。成長をどれだけ使うかで、積立に回せる量が変わるだけ。── まずは“なぜ得なのか”から見ていきます。</p>
+  </header>
+
+  <!-- 0. なぜ得か -->
+  <section class="card">
+    <div class="card-title"><span class="num">0</span>そもそも、なぜNISAはお得？</div>
+    <div class="plain">投資で増えたお金には、普通は<span class="em">約2割の税金</span>がかかります。NISAという“専用の財布”の中で増やした分は、その税金が<span class="em">まるごと0円</span>になります。</div>
+    <div class="tax">
+      <div class="taxcell bad">
+        <div class="th">ふつうの口座で 20万円の利益</div>
+        <div class="tbig">−約4万円</div>
+        <div class="ts">税金で引かれる</div>
+      </div>
+      <div class="taxvs">VS</div>
+      <div class="taxcell good">
+        <div class="th">NISAで 20万円の利益</div>
+        <div class="tbig">0円</div>
+        <div class="ts">まるまる受け取れる</div>
+      </div>
+    </div>
+    <div class="taxnote">※ 投資で得た利益（値上がり益・分配金）にかかる税金は <b>20.315%</b>。NISA口座の中ならこれがかかりません。</div>
+  </section>
+
+  <!-- 1. メインの器 -->
+  <section class="card">
+    <div class="card-title"><span class="num">1</span>1本の器を、2つの枠で取り合う</div>
+    <div class="plain">大きな器（<span style="color:var(--tsumitate)">合計1,800万</span>）が1つ。そこに、コツコツ貯める「<span style="color:var(--tsumitate)">つみたて枠</span>」と、まとめて買える「<span class="em">成長枠</span>」を入れていきます。成長枠だけは<span class="em">1,200万までの蓋</span>付き。</div>
+    <div class="card-note">下のつまみで成長枠を動かすと、積立が自動で増減します。合計はいつでも1,800万円。</div>
+
+    <div class="barbox">
+      <div class="cap-tag">ここが上限の蓋：成長は最大1,200万</div>
+      <div class="bar">
+        <div class="seg" id="segT" style="width:60%">
+          <span class="lab">つみたて投資枠</span>
+          <span class="amt"><span id="amtT">1,080</span>万</span>
+        </div>
+        <div class="seg" id="segS" style="width:40%">
+          <span class="lab">成長投資枠</span>
+          <span class="amt"><span id="amtS">720</span>万</span>
+        </div>
+      </div>
+      <div class="cap"></div>
+      <div class="cap-sub">◀ 成長の塗りはこの線を越えられない</div>
+    </div>
+    <div class="scale"><span>0</span><span>合計 1,800万円</span></div>
+
+    <div class="slider-row">
+      <label>成長投資枠を使う金額：<b id="valLab">720</b> 万円</label>
+      <input type="range" id="slider" min="0" max="1200" step="10" value="720">
+      <p class="hint">右いっぱいまで動かしても <b>1,200万でストップ</b>。残り600万は積立にしか使えません。</p>
+    </div>
+
+    <div class="detail" style="margin-top:18px">
+      <span class="dtag">くわしく</span>
+      <p>この1,800万円は「<b>買ったときの値段（買付額）</b>」で数えます。買ったあと値上がりして時価が2,000万になっても、枠を食いつぶすことはありません。</p>
+      <p class="mini">＝ 増えた分は枠の外。だから「安く買って大きく育てる」ほど、非課税の恩恵が大きくなります。</p>
+    </div>
+  </section>
+
+  <!-- 2. 代表3パターン -->
+  <section class="card">
+    <div class="card-title"><span class="num">2</span>つまり、こういう組み合わせが全部OK</div>
+    <div class="card-note">どれも合計はぴったり1,800万円。赤い点線（成長の上限）の位置はずっと同じです。</div>
+    <div class="patterns">
+      <div>
+        <div class="pat">
+          <span class="ptitle">パターンA</span>
+          <div class="minibar">
+            <div class="mseg mt" style="width:100%">つみたて 1,800万</div>
+            <div class="mcap"></div>
+          </div>
+        </div>
+        <div class="pat-foot">成長 0万 ＋ 積立 1,800万 ／ 積立だけで埋めてもOK</div>
+      </div>
+      <div>
+        <div class="pat">
+          <span class="ptitle">パターンB</span>
+          <div class="minibar">
+            <div class="mseg mt" style="width:72.2%">つみたて 1,300万</div>
+            <div class="mseg ms" style="width:27.8%">成長 500万</div>
+            <div class="mcap"></div>
+          </div>
+        </div>
+        <div class="pat-foot">成長 500万 ＋ 積立 1,300万</div>
+      </div>
+      <div>
+        <div class="pat">
+          <span class="ptitle">パターンC</span>
+          <div class="minibar">
+            <div class="mseg mt" style="width:33.333%">積立 600万</div>
+            <div class="mseg ms" style="width:66.667%">成長 1,200万（上限いっぱい）</div>
+            <div class="mcap"></div>
+          </div>
+        </div>
+        <div class="pat-foot">成長 1,200万 ＋ 積立 600万 ／ 成長を上限まで使った形</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. 年間上限 -->
+  <section class="card">
+    <div class="card-title"><span class="num">3</span>1年で入れられる量にも上限</div>
+    <div class="plain">上の1,800万は「<span style="color:var(--tsumitate)">一生分の総額</span>」。それとは別に、<span class="em">1年あたり最大360万</span>までというペース制限があります。</div>
+    <div class="year">
+      <div class="ycell t">
+        <div class="yl">つみたて投資枠</div>
+        <div class="yv">年 120万</div>
+        <div class="ys">＝ 毎月10万円まで</div>
+      </div>
+      <div class="ycell s">
+        <div class="yl">成長投資枠</div>
+        <div class="yv">年 240万</div>
+        <div class="ys">まとめて入れやすい</div>
+      </div>
+      <div class="ytotal">2つ合わせて 1年で最大 <b>360万円</b> まで</div>
+    </div>
+    <div class="detail" style="margin-top:16px">
+      <span class="dtag">くわしく</span>
+      <p>毎年360万をフルに使うと、<b>最短5年</b>で1,800万を使い切れます（360万 × 5年）。もちろん月1万円からのゆっくりペースでもOK。</p>
+      <p class="mini">使い切れなかった年間枠は、翌年に繰り越せません（その年のぶんはその年まで）。</p>
+    </div>
+  </section>
+
+  <!-- 4. 枠の復活 -->
+  <section class="card">
+    <div class="card-title"><span class="num">4</span>売れば、枠は“よみがえる”</div>
+    <div class="plain">旧制度と一番違うのがここ。買ったものを売ると、その<span class="em">買値ぶんの枠が翌年に復活</span>して、また使えます。器は使い捨てではなく、<span class="em">出し入れできる</span>のです。</div>
+    <div class="detail">
+      <span class="dtag">くわしく</span>
+      <p><b>例：</b>200万円で買った株を売ると、翌年に <b>200万円分の枠が戻ってきて</b>、別の投資にもう一度使えます（その年の年間上限の範囲内で）。</p>
+      <p>これにより「住宅資金で一度引き出し → 数年後にまた積み立て直す」といった<b>ライフイベントに合わせた使い回し</b>ができます。</p>
+      <p class="mini">※ 復活するのは売った分の「買値」であって、値上がりした時価ではありません。</p>
+    </div>
+  </section>
+
+  <!-- 5. 何が買える -->
+  <section class="card">
+    <div class="card-title"><span class="num">5</span>2つの枠で「買えるもの」が違う</div>
+    <div class="plain">つみたて枠は<span style="color:var(--tsumitate)">国がえらんだ“長く持つ向き”の投資信託</span>だけ。成長枠は<span class="em">個別株なども含めて幅広く</span>選べます。</div>
+    <div class="buy">
+      <div class="buycol t">
+        <h4>つみたて投資枠</h4>
+        <ul>
+          <li>長期・積立・分散に向いた投資信託</li>
+          <li>一部のETF（上場投資信託）</li>
+        </ul>
+        <div class="ng">国（金融庁）の基準を満たした商品に限定。初心者でも選びやすい“絞り込み済み”の棚。</div>
+      </div>
+      <div class="buycol s">
+        <h4>成長投資枠</h4>
+        <ul>
+          <li>上場している個別株（国内・海外）</li>
+          <li>多くの投資信託・ETF・REIT（不動産）</li>
+        </ul>
+        <div class="ng">対象外：高レバレッジ型・毎月分配型の投信、整理/監理銘柄など。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. 始める前に -->
+  <section class="card">
+    <div class="card-title"><span class="num">6</span>始める前に知っておく前提</div>
+    <div class="facts">
+      <div class="fact"><span class="ic">18</span><div class="ft"><b>18歳以上から</b>その年の1月1日時点で18歳以上の人が対象。</div></div>
+      <div class="fact"><span class="ic">1</span><div class="ft"><b>1人1口座だけ</b>持てるのは1つの金融機関のみ。変更は年単位で可能。</div></div>
+      <div class="fact"><span class="ic">∞</span><div class="ft"><b>期間は無期限</b>非課税で持ち続けられる期間に終わりがなく、制度も恒久化。</div></div>
+      <div class="fact"><span class="ic">¥</span><div class="ft"><b>損益通算はできない</b>NISA内の損失は、他の口座の利益と相殺できません。</div></div>
+      <div class="warn"><b>大事な注意：</b>NISAは「税金が0になる仕組み」であって、元本保証ではありません。投資なので、値下がりして損をする可能性もあります。生活防衛資金は別に確保したうえで、余裕資金で始めるのが基本です。</div>
+    </div>
+  </section>
+
+  <!-- 7. 旧制度との違い -->
+  <section class="card">
+    <div class="card-title"><span class="num">7</span>昔のNISAと、ここが変わった</div>
+    <div class="plain">2023年までの旧NISAは「<span class="em">期間が短く・枠が小さく・2つを同時に使えない</span>」ものでした。新NISAはそれを全部ゆるめた“強化版”です。</div>
+    <div class="ctwrap">
+      <table class="ctable">
+        <thead>
+          <tr>
+            <th></th>
+            <th>旧・つみたてNISA</th>
+            <th>旧・一般NISA</th>
+            <th class="newcol">新NISA（2024年〜）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="lab">年間に入れられる額</td><td>40万円</td><td>120万円</td><td class="newcol">最大360万円</td></tr>
+          <tr><td class="lab">一生の総枠</td><td>最大800万円</td><td>最大600万円</td><td class="newcol">1,800万円</td></tr>
+          <tr><td class="lab">非課税の期間</td><td>20年</td><td>5年</td><td class="newcol">無期限</td></tr>
+          <tr><td class="lab">2つの枠の併用</td><td colspan="2" style="text-align:center;color:var(--cap)">どちらか一方だけ</td><td class="newcol">同時に使える</td></tr>
+          <tr><td class="lab">売った枠の再利用</td><td colspan="2" style="text-align:center;color:var(--cap)">できない（使い捨て）</td><td class="newcol">翌年よみがえる</td></tr>
+          <tr><td class="lab">制度の続く期間</td><td colspan="2" style="text-align:center;color:var(--cap)">期限つき（2023年で終了）</td><td class="newcol">恒久化</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="detail" style="margin-top:16px">
+      <span class="dtag">くわしく</span>
+      <p>旧NISAで2023年までに買ったぶんは、新NISAの1,800万とは<b>別枠</b>として、それぞれの非課税期間が終わるまでそのまま持ち続けられます（新たな買い増しはできません）。</p>
+    </div>
+  </section>
+
+  <!-- 8. 使い分け -->
+  <section class="card">
+    <div class="card-title"><span class="num">8</span>2つの枠、どう使い分ける？</div>
+    <div class="plain">迷ったら、<span style="color:var(--tsumitate)">つみたて枠を“土台”</span>に毎月コツコツ。<span class="em">成長枠は“応用”</span>として、まとめ買いや個別株に使う── が分かりやすい型です。</div>
+    <div class="use">
+      <div class="usecol t">
+        <div class="role">＝ 家計の土台（コア）</div>
+        <h4>つみたて投資枠の出番</h4>
+        <ul>
+          <li>毎月の自動積立でほったらかし運用</li>
+          <li>世界全体や米国などの“まるごと”投信</li>
+          <li>値動きを気にせず長期で続けたい人</li>
+        </ul>
+      </div>
+      <div class="usecol s">
+        <div class="role">＝ 上乗せ・応用（サテライト）</div>
+        <h4>成長投資枠の出番</h4>
+        <ul>
+          <li>ボーナスなどをまとめて一括投資</li>
+          <li>応援したい企業の個別株を買う</li>
+          <li>配当・株主優待を狙う</li>
+        </ul>
+      </div>
+    </div>
+    <div class="detail" style="margin-top:16px">
+      <span class="dtag">くわしく</span>
+      <p>成長投資枠でも、つみたて枠と同じ投信を積み立てて構いません。「個別株はやらない」人は、<b>成長枠もぜんぶ投信積立に使う</b>のも王道です（その場合でも成長枠の上限は1,200万のまま）。</p>
+    </div>
+  </section>
+
+  <!-- 9. シミュレーション -->
+  <section class="card">
+    <div class="card-title"><span class="num">9</span>実際、どれくらい増える？</div>
+    <div class="plain">毎月いくらを・何年・何%で増やすと、<span class="em">元本（自分が入れたお金）</span>に<span style="color:var(--tsumitate)">運用益（増えた分）</span>がどう乗るか。つまみを動かして試せます。</div>
+    <div class="sim-controls">
+      <div class="sim-ctl">
+        <label>毎月の積立額</label>
+        <div><span class="cval" id="simMlab">3</span> 万円</div>
+        <input type="range" id="simM" min="1" max="10" step="1" value="3">
+      </div>
+      <div class="sim-ctl">
+        <label>続ける年数</label>
+        <div><span class="cval" id="simYlab">20</span> 年</div>
+        <input type="range" id="simY" min="5" max="40" step="1" value="20">
+      </div>
+      <div class="sim-ctl">
+        <label>年あたりの利回り</label>
+        <div><span class="cval" id="simRlab">5</span> %</div>
+        <input type="range" id="simR" min="1" max="8" step="1" value="5">
+      </div>
+    </div>
+    <div class="chartbox"><svg id="simChart" viewBox="0 0 600 300" preserveAspectRatio="xMidYMid meet"></svg></div>
+    <div class="legend">
+      <span><i style="background:#cbd5e1"></i>元本（入れたお金）</span>
+      <span><i style="background:var(--seicho)"></i>運用益（増えた分）</span>
+    </div>
+    <div class="sim-result">
+      <div class="rcell pr"><div class="rl">入れた元本</div><div class="rv" id="resP">—</div><div class="rs">自分が積み立てた合計</div></div>
+      <div class="rcell gn"><div class="rl">最終的な合計</div><div class="rv" id="resT">—</div><div class="rs">元本＋運用益</div></div>
+      <div class="rcell tx"><div class="rl">NISAで浮く税金</div><div class="rv" id="resTax">—</div><div class="rs">通常なら運用益に約2割課税</div></div>
+    </div>
+    <div class="detail" style="margin-top:16px">
+      <span class="dtag">くわしく</span>
+      <p>これは「毎年一定の利回りで増え続けたら」という<b>あくまでの試算</b>です。実際の相場は上下するため、この通りになる保証はありません。利回りは複利（増えた分にもさらに利息がつく）で計算しています。</p>
+      <p class="mini">※ 積立額×年数が1,800万を超える設定も試せますが、実際の非課税枠は1,800万円までです。</p>
+    </div>
+  </section>
+
+  <!-- まとめ -->
+  <section class="takeaway">
+    <h2>ひとことで言うと</h2>
+    <ul>
+      <li>増えた分の税金（約2割）が<b>0円</b>になる、お得な“専用の財布”</li>
+      <li>一生で入れられるのは買値ベースで<b>合計1,800万円</b></li>
+      <li>そのうち<b>成長投資枠は最大1,200万円</b>、残りは積立に回す（配分は自由）</li>
+      <li>1年のペースは<b>最大360万円</b>、売れば<b>枠は翌年よみがえる</b></li>
+    </ul>
+  </section>
+
+  <p class="footer">制度の数字は新NISA（2024年〜）にもとづく一般的な説明です。商品の対象範囲や手続きは金融機関により異なる場合があります。投資の判断は、必ず最新の公式情報（金融庁・金融機関）をご確認のうえ自己責任で行ってください。</p>
+
+</div>
+
+<script>
+  const TOTAL = 1800;
+  const slider = document.getElementById('slider');
+  const segT = document.getElementById('segT');
+  const segS = document.getElementById('segS');
+  const amtT = document.getElementById('amtT');
+  const amtS = document.getElementById('amtS');
+  const valLab = document.getElementById('valLab');
+
+  function render(seicho){
+    const tsumitate = TOTAL - seicho;
+    const pT = tsumitate / TOTAL * 100;
+    const pS = seicho / TOTAL * 100;
+    segT.style.width = pT + '%';
+    segS.style.width = pS + '%';
+    amtT.textContent = tsumitate.toLocaleString();
+    amtS.textContent = seicho.toLocaleString();
+    valLab.textContent = seicho.toLocaleString();
+    segT.classList.toggle('thin', pT < 16);
+    segS.classList.toggle('thin', pS < 16);
+  }
+  slider.addEventListener('input', e => render(parseInt(e.target.value,10)));
+  render(parseInt(slider.value,10));
+
+  /* ===== 増え方シミュレーター ===== */
+  const simM = document.getElementById('simM');
+  const simY = document.getElementById('simY');
+  const simR = document.getElementById('simR');
+  const chart = document.getElementById('simChart');
+
+  function fmtMan(v){
+    v = Math.round(v);
+    if(v >= 10000){
+      const oku = Math.floor(v/10000), rem = v - oku*10000;
+      return oku + '億' + (rem>0 ? rem.toLocaleString()+'万' : '') + '円';
+    }
+    return v.toLocaleString() + '万円';
+  }
+
+  function totalAt(P, r, year){           // P=月額(万), r=月利, year=経過年
+    const m = year*12;
+    if(r === 0) return P*m;
+    return P * (Math.pow(1+r, m) - 1) / r;
+  }
+
+  function drawSim(){
+    const P = parseInt(simM.value,10);          // 月額（万円）
+    const N = parseInt(simY.value,10);          // 年数
+    const annual = parseInt(simR.value,10);     // 年利%
+    const r = annual/100/12;
+    document.getElementById('simMlab').textContent = P;
+    document.getElementById('simYlab').textContent = N;
+    document.getElementById('simRlab').textContent = annual;
+
+    const principal = P*12*N;
+    const total = totalAt(P, r, N);
+    const gain = total - principal;
+    const tax = gain * 0.20315;
+    document.getElementById('resP').textContent = fmtMan(principal);
+    document.getElementById('resT').textContent = fmtMan(total);
+    document.getElementById('resTax').textContent = fmtMan(tax);
+
+    // --- SVG 描画 ---
+    const W=600,H=300,L=54,R=12,T=14,B=28;
+    const plotW=W-L-R, plotH=H-T-B, base=T+plotH;
+    const maxV = totalAt(P, r, N) || 1;
+    const x = t => L + (t/N)*plotW;
+    const y = v => base - (v/maxV)*plotH;
+
+    let pPts='', tPts='';
+    for(let t=0;t<=N;t++){
+      pPts += `${x(t).toFixed(1)},${y(P*12*t).toFixed(1)} `;
+      tPts += `${x(t).toFixed(1)},${y(totalAt(P,r,t)).toFixed(1)} `;
+    }
+    const totalArea = `M${x(0)},${base} L${tPts.trim().replace(/ /g,' L')} L${x(N)},${base} Z`;
+    const prinArea  = `M${x(0)},${base} L${pPts.trim().replace(/ /g,' L')} L${x(N)},${base} Z`;
+
+    // 目盛り（y: 0/中間/最大、x: 年）
+    let grid='';
+    for(let i=0;i<=2;i++){
+      const v = maxV*i/2, gy=y(v);
+      grid += `<line x1="${L}" y1="${gy}" x2="${W-R}" y2="${gy}" stroke="#e2e8f0"/>`;
+      grid += `<text x="${L-6}" y="${gy+4}" text-anchor="end" font-size="10" fill="#94a3b8">${fmtMan(v)}</text>`;
+    }
+    const xticks=[0, Math.round(N/2), N];
+    let xlab='';
+    xticks.forEach(t=>{ xlab += `<text x="${x(t)}" y="${base+18}" text-anchor="middle" font-size="10" fill="#94a3b8">${t}年</text>`; });
+
+    chart.innerHTML =
+      grid +
+      `<path d="${totalArea}" fill="#f97316" opacity="0.85"/>` +
+      `<path d="${prinArea}" fill="#cbd5e1"/>` +
+      `<polyline points="${tPts}" fill="none" stroke="#ea580c" stroke-width="2"/>` +
+      xlab;
+  }
+  [simM, simY, simR].forEach(el => el.addEventListener('input', drawSim));
+  drawSim();
+</script>
+</body>
+</html>
